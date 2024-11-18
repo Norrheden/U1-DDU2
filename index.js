@@ -51,8 +51,11 @@ for(let i = 0; i<=nrRows; i++ ) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.classList.add("head_row");
-    cell.textContent = [i-1];
+    // [i-1]
     divTable.append(cell);
+    if (i>0) {
+    cell.textContent = `${i-1}-${cities[i-1].name}`;
+    }
     if(i == 0) {
         cell.style.color = "white";
     }
