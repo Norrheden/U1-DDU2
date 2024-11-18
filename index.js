@@ -65,6 +65,10 @@ for(let i = 0; i<=nrRows; i++ ) {
         if(i==0 && j<=38 ) {
             cell.classList.add("head_column")
         }
+        if(i>0 && j%2 == 0) {
+            cell.classList.add("even_col")
+
+        }
     }
 }
 
