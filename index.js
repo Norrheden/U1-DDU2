@@ -41,26 +41,31 @@ for(let key in cities) {
 }
 
 const nrCols = 38;
-const nrRows = 38;
+const nrRows = 39;
 
 
 
 
 for(let i = 0; i<=nrRows; i++ ) {
+    
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.classList.add("head_row");
-    cell.textContent = [i];
+    cell.textContent = [i-1];
     divTable.append(cell);
-
+    if(i == 0) {
+        cell.style.color = "white";
+    }
+    
     for(let j = 0; j<=nrCols; j++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
         cell.textContent = [j];
         divTable.append(cell);
+        if(i==0 && j<=38 ) {
+            cell.classList.add("head_column")
+        }
     }
-
-
 }
 
 /*
