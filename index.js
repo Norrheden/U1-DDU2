@@ -18,6 +18,7 @@ const title = document.querySelector("title");
 const h2 = document.querySelector("h2");
 const h3 = document.querySelector("h3");
 const citiesTable = document.getElementById("cities")
+const divTable = document.getElementById("table");
 
 // Recommended: Ask for the city name and then the rest of the code
 
@@ -39,7 +40,45 @@ for(let key in cities) {
     citiesTable.appendChild(div);
 }
 
+const nrCols = 38;
+const nrRows = 38;
 
+
+
+
+for(let i = 0; i<=nrRows; i++ ) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.classList.add("head_row");
+    cell.textContent = [i];
+    divTable.append(cell);
+
+    for(let j = 0; j<=nrCols; j++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.textContent = [j];
+        divTable.append(cell);
+    }
+
+
+}
+
+/*
+for(let i = 0; i<=nrRows; i++) {
+
+    for(let j = 0; j<=nrCols; i++) {
+        const div = document.createElement("div");
+        div.textContent = "hej"
+        div.className = "cell"
+        divTable.appendChild(div);
+
+        
+
+    }
+
+}
+
+*/
 
 
 
