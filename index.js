@@ -56,6 +56,9 @@ for(let i = 0; i<=nrRows; i++ ) {
     if(i == 0) {
         cell.style.color = "white";
     }
+    if(i%2 == 1) {
+        cell.classList.add("even_row")
+    }
     
     for(let j = 0; j<=nrCols; j++) {
         const cell = document.createElement("div");
@@ -68,6 +71,9 @@ for(let i = 0; i<=nrRows; i++ ) {
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
 
+        }
+        if(i%2 == 1) {
+            cell.classList.add("even_row")
         }
     }
 }
