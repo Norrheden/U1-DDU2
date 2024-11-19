@@ -40,11 +40,9 @@ for(let key in cities) {
     citiesTable.appendChild(div);
 }
 
+
 const nrCols = 38;
 const nrRows = 39;
-
-
-
 
 for(let i = 0; i<=nrRows; i++ ) {
     
@@ -66,10 +64,10 @@ for(let i = 0; i<=nrRows; i++ ) {
     for(let j = 0; j<=nrCols; j++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
-        cell.textContent = [j];
         divTable.append(cell);
         if(i==0 && j<=38 ) {
             cell.classList.add("head_column")
+            cell.textContent = [j];
         }
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
