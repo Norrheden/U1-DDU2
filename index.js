@@ -67,8 +67,14 @@ for(let i = 0; i<=nrRows; i++ ) {
         divTable.append(cell);
         if(i==0 && j<=38 ) {
             cell.classList.add("head_column")
-            cell.textContent = [j];
+            cell.textContent = j;
         }
+
+        if(i>0 && j<=38) {
+            cell.textContent = `${i-1},${j}`;
+
+        }
+        
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
 
