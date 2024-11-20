@@ -1,4 +1,28 @@
+//Hittar kortaste avstånd id
+function findMinCity(id, min) {
+    for(let key in distances) {
+        if(id == distances[key].city1 && min == distances[key].distance) {
+            return distances[key].city2;
+        } 
+        if(id == distances[key].city2 && min == distances[key].distance) {
+            return distances[key].city1;
+        } 
+        
+    }
+}
 
+
+//Hittar längsta avstånd id
+function findMaxCity(id, max) {
+    for(let key in distances) {
+        if(id == distances[key].city1 && max == distances[key].distance) {
+            return distances[key].city2;
+        } 
+        if(id == distances[key].city2 && max == distances[key].distance) {
+            return distances[key].city1;
+        } 
+    }
+}
 //Hittar staden, om staden hittades så blir cityfound true annars false
 function findCity(targetCityName) {
     for (let key in cities) {
@@ -80,6 +104,15 @@ const min = Math.min(...everyDistance);
 
 console.log(max);
 console.log(min);
+
+let maxId = findMaxCity(id, max);
+console.log(maxId);
+
+let minId = findMinCity(id, min);
+console.log(minId);
+
+
+
 
 
 
