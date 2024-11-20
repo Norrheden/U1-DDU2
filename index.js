@@ -1,45 +1,102 @@
-// Recommended: All functions declared here
-function f1(target) {
+
+//Hittar staden, om staden hittades så blir cityfound true annars false
+function findCity(targetCityName) {
     for (let key in cities) {
-        if (target == cities[key].name) {
-            h2.textContent = `${target} (${cities[key].country})`;
-            title.textContent = `${target}`;
+        if (targetCityName == cities[key].name) {
+            h2.textContent = `${targetCityName} (${cities[key].country})`;
+            title.textContent = `${targetCityName}`;
             return cityFound = true;
-            break;
         } else {
-            h2.textContent = `${target} finns inte i databasen`;
+            h2.textContent = `${targetCityName} finns inte i databasen`;
             title.textContent = `Not Found`
         }
     }
 }
 
-// Recommended: constants with references to existing HTML-elements
+//Hittar id på staden
+function findId(targetCityName) {
+    for (let key in cities) {
+        if (targetCityName == cities[key].name) {
+            return cities[key].id;
+        }
+    }
+}
+
+//Tar alla tänkbara avstånd
+function distance(id) {
+    for(let key in distances) {
+        if (id == distances[key].city1) {
+            arrayOfdistances.push(distances[key].distance);
+        }
+        if (id == distances[key].city2) {
+            arrayOfdistances.push(distances[key].distance);
+        }
+        
+    } return arrayOfdistances;
+    
+    
+}
+
+
+
 const title = document.querySelector("title");
 const h2 = document.querySelector("h2");
 const h3 = document.querySelector("h3");
 const citiesTable = document.getElementById("cities")
 const divTable = document.getElementById("table");
 
-// Recommended: Ask for the city name and then the rest of the code
 
+
+
+// Start
 const targetCityName = prompt("Vilken stad");
 let cityFound = false;
+let arrayOfdistances =[]
 
-f1(targetCityName);
+
+
+
+//Går in i funktionen för att hitta staden
+findCity(targetCityName);
+
+//Går in i funktionen för att hitta stadens id
+let id = findId(targetCityName);
+console.log(id);
+
+
+
+
+//Vi går in i denna om vi inte hittade staden
 if (cityFound == false) {
     h3.textContent = "";
 }
 
+//Går in i funktionen för att hitta alla asvtånd
+let everyDistance = distance(id);
+console.log(everyDistance);
+
+const max = Math.max(...everyDistance);
+const min = Math.min(...everyDistance);
+
+console.log(max);
+console.log(min);
 
 
+
+
+
+
+
+
+
+//Skapar div boxarna och sätter färger(class)
 for(let key in cities) {
     const div = document.createElement("div")
     div.className = "cityBox"
     div.textContent = cities[key].name;
     citiesTable.appendChild(div);
     if (targetCityName == cities[key].name) {
-        div.className = "target cityBox" ;
-
+        div.className = "target cityBox";
     }
 }
 
@@ -48,6 +105,19 @@ for(let key in cities) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Skapa tabellen
 const nrCols = 38;
 const nrRows = 39;
 for(let i = 0; i<=nrRows; i++ ) {
