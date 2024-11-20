@@ -3,7 +3,7 @@ function f1(target) {
     for (let key in cities) {
         if (target == cities[key].name) {
             h2.textContent = `${target} (${cities[key].country})`;
-            title.textContent = `${target}`
+            title.textContent = `${target}`;
             return cityFound = true;
             break;
         } else {
@@ -26,11 +26,10 @@ const targetCityName = prompt("Vilken stad");
 let cityFound = false;
 
 f1(targetCityName);
-
-
 if (cityFound == false) {
     h3.textContent = "";
 }
+
 
 
 for(let key in cities) {
@@ -38,18 +37,25 @@ for(let key in cities) {
     div.className = "cityBox"
     div.textContent = cities[key].name;
     citiesTable.appendChild(div);
+    if (targetCityName == cities[key].name) {
+        div.className = "target cityBox" ;
+
+    }
 }
+
+
+
+
 
 
 const nrCols = 38;
 const nrRows = 39;
-
 for(let i = 0; i<=nrRows; i++ ) {
     
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.classList.add("head_row");
-    // [i-1]
+    
     divTable.append(cell);
     if (i>0) {
     cell.textContent = `${i-1}-${cities[i-1].name}`;
@@ -60,7 +66,6 @@ for(let i = 0; i<=nrRows; i++ ) {
     if(i%2 == 1) {
         cell.classList.add("even_row")
     }
-    
     for(let j = 0; j<=nrCols; j++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
@@ -69,12 +74,14 @@ for(let i = 0; i<=nrRows; i++ ) {
             cell.classList.add("head_column")
             cell.textContent = j;
         }
-
         if(i>0 && j<=38) {
-            cell.textContent = `${i-1},${j}`;
-
+            let x = i - 1;
+            let y = j;
+            if(x == y) {
+                cell.textContent = `0`
+            }                       
+                    //cell.textContent = `${i-1},${j}`;
         }
-        
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
 
