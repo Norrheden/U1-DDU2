@@ -1,5 +1,26 @@
+
+
+//Hittar min staden
+function findMinCity(minId) {
+    for(let key in cities) {
+        if(minId == cities[key].id) {
+            return cities[key].name;
+        }
+    }
+}
+
+//Hittar max staden
+function findMaxCity(maxId) {
+    for(let key in cities) {
+        if(maxId == cities[key].id) {
+            return cities[key].name;
+        }
+    }
+}
+
+
 //Hittar kortaste avstånd id
-function findMinCity(id, min) {
+function findMinCityId(id, min) {
     for(let key in distances) {
         if(id == distances[key].city1 && min == distances[key].distance) {
             return distances[key].city2;
@@ -13,7 +34,7 @@ function findMinCity(id, min) {
 
 
 //Hittar längsta avstånd id
-function findMaxCity(id, max) {
+function findMaxCityId(id, max) {
     for(let key in distances) {
         if(id == distances[key].city1 && max == distances[key].distance) {
             return distances[key].city2;
@@ -68,6 +89,8 @@ const h2 = document.querySelector("h2");
 const h3 = document.querySelector("h3");
 const citiesTable = document.getElementById("cities")
 const divTable = document.getElementById("table");
+const closest = document.getElementById("closest");
+const furthest = document.getElementById("furthest");
 
 
 
@@ -105,13 +128,17 @@ const min = Math.min(...everyDistance);
 console.log(max);
 console.log(min);
 
-let maxId = findMaxCity(id, max);
+let maxId = findMaxCityId(id, max);
 console.log(maxId);
 
-let minId = findMinCity(id, min);
+let minId = findMinCityId(id, min);
 console.log(minId);
 
+const targetCityMax = findMaxCity(maxId);
+console.log(targetCityMax);
 
+const targetCityMin = findMinCity(minId);
+console.log(targetCityMin)
 
 
 
@@ -130,6 +157,17 @@ for(let key in cities) {
     citiesTable.appendChild(div);
     if (targetCityName == cities[key].name) {
         div.className = "target cityBox";
+    }
+    if (targetCityMax == cities[key].name) {
+        div.className = "furthest cityBox";
+        div.textContent = `${cities[key].name} ligger ${Math.floor(max/10)} mil bort`;
+        furthest.textContent = cities[key].name;
+    }
+    if (targetCityMin == cities[key].name) {
+        div.className = "closest cityBox";
+        div.textContent = `${cities[key].name} ligger ${Math.floor(min/10)} mil bort`;
+        closest.textContent = cities[key].name;
+        
     }
 }
 
