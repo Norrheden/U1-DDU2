@@ -223,10 +223,10 @@ for(let i = 0; i<=nrRows; i++ ) {
 
             for(let k = 0; k<distances.length; k++) {
                 if(city1 == distances[k].city1 && city2 == distances[k].city2) {
-                    cell.textContent = distances[k].distance;
+                    cell.textContent = Math.floor(distances[k].distance/10);
                 }
                 if(city1 == distances[k].city2 && city2 == distances[k].city1) {
-                    cell.textContent = distances[k].distance;
+                    cell.textContent = Math.floor(distances[k].distance/10);
                 }
 
             }
