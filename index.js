@@ -215,13 +215,24 @@ for(let i = 0; i<=nrRows; i++ ) {
             cell.classList.add("head_column")
             cell.textContent = j;
         }
+        
         if(i>0 && j<=38) {
-            let x = i - 1;
-            let y = j;
-            if(x == y) {
-                cell.textContent = `0`
-            }                       
-                    //cell.textContent = `${i-1},${j}`;
+
+            city1 = i-1;
+            city2 = j;
+
+            for(let k = 0; k<distances.length; k++) {
+                if(city1 == distances[k].city1 && city2 == distances[k].city2) {
+                    cell.textContent = distances[k].distance;
+                }
+                if(city1 == distances[k].city2 && city2 == distances[k].city1) {
+                    cell.textContent = distances[k].distance;
+                }
+
+            }
+            
+            //cell.textContent = `${city1},${city2}`;
+                                        
         }
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
@@ -253,3 +264,10 @@ for(let i = 0; i<=nrRows; i++) {
 
 
 
+ //for(let k = 0; k<distances.length; k++) {
+                
+                
+                
+                
+                             
+    //cell.textContent = `${i-1},${j}`;
