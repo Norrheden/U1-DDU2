@@ -1,54 +1,52 @@
 
-
 //Hittar min staden
 function findMinCity(minId) {
-    for(let key in cities) {
-        if(minId == cities[key].id) {
-            return cities[key].name;
+    for(let city of cities) {
+        if(minId == city.id) {
+            return city.name;
         }
     }
 }
 
 //Hittar max staden
 function findMaxCity(maxId) {
-    for(let key in cities) {
-        if(maxId == cities[key].id) {
-            return cities[key].name;
+    for(let city of cities) {
+        if(maxId == city.id) {
+            return city.name;
         }
     }
 }
 
-
 //Hittar kortaste avstånd id
 function findMinCityId(id, min) {
-    for(let key in distances) {
-        if(id == distances[key].city1 && min == distances[key].distance) {
-            return distances[key].city2;
+    for(let object of distances) {
+        if(id == object.city1 && min == object.distance) {
+            return object.city2;
         } 
-        if(id == distances[key].city2 && min == distances[key].distance) {
-            return distances[key].city1;
+        if(id == object.city2 && min == object.distance) {
+            return object.city1;
         } 
         
     }
 }
 
-
 //Hittar längsta avstånd id
 function findMaxCityId(id, max) {
-    for(let key in distances) {
-        if(id == distances[key].city1 && max == distances[key].distance) {
-            return distances[key].city2;
+    for(let object of distances) {
+        if(id == object.city1 && max == object.distance) {
+            return object.city2;
         } 
-        if(id == distances[key].city2 && max == distances[key].distance) {
-            return distances[key].city1;
+        if(id == object.city2 && max == object.distance) {
+            return object.city1;
         } 
     }
 }
+
 //Hittar staden, om staden hittades så blir cityfound true annars false
 function findCity(targetCityName) {
-    for (let key in cities) {
-        if (targetCityName == cities[key].name) {
-            h2.textContent = `${targetCityName} (${cities[key].country})`;
+    for (let city of cities) {
+        if (targetCityName == city.name) {
+            h2.textContent = `${targetCityName} (${city.country})`;
             title.textContent = `${targetCityName}`;
             return cityFound = true;
         } else {
@@ -60,26 +58,24 @@ function findCity(targetCityName) {
 
 //Hittar id på staden
 function findId(targetCityName) {
-    for (let key in cities) {
-        if (targetCityName == cities[key].name) {
-            return cities[key].id;
+    for (let city of cities) {
+        if (targetCityName == city.name) {
+            return city.id;
         }
     }
 }
 
 //Tar alla tänkbara avstånd
 function distance(id) {
-    for(let key in distances) {
-        if (id == distances[key].city1) {
-            arrayOfdistances.push(distances[key].distance);
+    for(let object of distances) {
+        if (id == object.city1) {
+            arrayOfdistances.push(object.distance);
         }
-        if (id == distances[key].city2) {
-            arrayOfdistances.push(distances[key].distance);
+        if (id == object.city2) {
+            arrayOfdistances.push(object.distance);
         }
         
     } return arrayOfdistances;
-    
-    
 }
 
 
@@ -94,7 +90,6 @@ const furthest = document.getElementById("furthest");
 
 
 
-
 // Start
 const targetCityName = prompt("Vilken stad");
 let cityFound = false;
@@ -102,9 +97,10 @@ let arrayOfdistances =[]
 
 
 
-
 //Går in i funktionen för att hitta staden
 findCity(targetCityName);
+
+
 
 //Går in i funktionen för att hitta stadens id
 let id = findId(targetCityName);
@@ -112,11 +108,12 @@ console.log(id);
 
 
 
-
 //Vi går in i denna om vi inte hittade staden
 if (cityFound == false) {
     h3.textContent = "";
 }
+
+
 
 //Går in i funktionen för att hitta alla asvtånd
 let everyDistance = distance(id);
@@ -142,50 +139,27 @@ console.log(targetCityMin)
 
 
 
-
-
-
-
-
-
-
 //Skapar div boxarna och sätter färger(class)
-for(let key in cities) {
+for(let city of cities) {
     const div = document.createElement("div")
     div.className = "cityBox"
-    div.textContent = cities[key].name;
+    div.textContent = city.name;
     citiesTable.appendChild(div);
-    if (targetCityName == cities[key].name) {
+    if (targetCityName == city.name) {
         div.className = "target cityBox";
     }
-    if (targetCityMax == cities[key].name) {
+    if (targetCityMax == city.name) {
         div.className = "furthest cityBox";
-        div.textContent = `${cities[key].name} ligger ${Math.floor(max/10)} mil bort`;
-        furthest.textContent = cities[key].name;
+        div.textContent = `${city.name} ligger ${Math.floor(max/10)} mil bort`;
+        furthest.textContent = city.name;
     }
-    if (targetCityMin == cities[key].name) {
+    if (targetCityMin == city.name) {
         div.className = "closest cityBox";
-        div.textContent = `${cities[key].name} ligger ${Math.floor(min/10)} mil bort`;
-        closest.textContent = cities[key].name;
+        div.textContent = `${city.name} ligger ${Math.floor(min/10)} mil bort`;
+        closest.textContent = city.name;
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Skapa tabellen
@@ -215,12 +189,11 @@ for(let i = 0; i<=nrRows; i++ ) {
             cell.classList.add("head_column")
             cell.textContent = j;
         }
-        
         if(i>0 && j<=38) {
 
             city1 = i-1;
             city2 = j;
-
+            
             for(let k = 0; k<distances.length; k++) {
                 if(city1 == distances[k].city1 && city2 == distances[k].city2) {
                     cell.textContent = Math.floor(distances[k].distance/10);
@@ -229,10 +202,7 @@ for(let i = 0; i<=nrRows; i++ ) {
                     cell.textContent = Math.floor(distances[k].distance/10);
                 }
 
-            }
-            
-            //cell.textContent = `${city1},${city2}`;
-                                        
+            }                         
         }
         if(i>0 && j%2 == 0) {
             cell.classList.add("even_col")
@@ -244,30 +214,8 @@ for(let i = 0; i<=nrRows; i++ ) {
     }
 }
 
-/*
-for(let i = 0; i<=nrRows; i++) {
-
-    for(let j = 0; j<=nrCols; i++) {
-        const div = document.createElement("div");
-        div.textContent = "hej"
-        div.className = "cell"
-        divTable.appendChild(div);
-
-        
-
-    }
-
-}
-
-*/
 
 
 
 
- //for(let k = 0; k<distances.length; k++) {
-                
-                
-                
-                
-                             
-    //cell.textContent = `${i-1},${j}`;
+
