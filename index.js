@@ -1,5 +1,4 @@
 
-
 function findMinCity(minId) {
     for(let city of cities) {
         if(minId === city.id) {
